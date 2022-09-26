@@ -1,0 +1,99 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IssuesTracker.views"
+             xmlns:services="clr-namespace:IssuesTracker.services" x:Class="IssuesTracker.views.AddUserView"
+             mc:Ignorable="d" 
+               d:DesignHeight="700" d:DesignWidth="800" FontFamily="Modern No. 20" FontSize="20" Background="AliceBlue">
+    <UserControl.Resources>
+
+        <services:BmptoByteCvtr x:Key="BmptoByteCvtr"/>
+
+    </UserControl.Resources>
+    <StackPanel>
+        <StackPanel.Background>
+            <ImageBrush ImageSource="/IssuesTracker;component/images/images (1).jpg"/>
+        </StackPanel.Background>
+        <TextBlock Height="40" Margin="50,10" FontSize="28"
+                   FontWeight="Bold" Padding="160,0"><Run Text="USER INFORMATION"/></TextBlock>
+        <StackPanel Orientation="Horizontal" Height="35" Background="Bisque" Margin="10,0">
+            <Button x:Name="btnInfo" Width="50" Height="30" Foreground="Black" Click="BtnInfo_Click" FontSize="20" 
+                    Background="Transparent"  Content="-" />
+            <TextBlock Padding="5" Height="35" FontSize="20" FontWeight="Bold"
+                   Background="Bisque"><Run Text="User Registration"/></TextBlock>
+        </StackPanel>
+        <StackPanel x:Name="panelInfo" Height="350" Margin="10,0" Background="#FFE6DEDE">
+            <StackPanel Orientation="Horizontal" Margin="10,10,10,10"  Height="35">
+                <Button x:Name="btnCancel" Margin="480,0,10,0" Background="Transparent" Width="100" Content="Cancel"
+                       Click="BtnCancel_Click"  />
+                <Button x:Name="btnRegister" Background="Transparent" Margin="10,0,5,0" Width="100" Content="AddUser" Command="{Binding RegisterUserCmd}"/>
+            </StackPanel>
+            <StackPanel Margin="20,30,20,0"  Height="35" Orientation="Horizontal">
+                <TextBlock Padding="10" Width="150" FontSize="20" TextDecorations="Underline"
+                           FontFamily="Modern No. 20"><Run Text="Name"/></TextBlock>
+                <TextBox x:Name="tbxName" Margin="20,0" Text="{Binding user.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         BorderThickness="2" Width="500" FontSize="20" />
+            </StackPanel>
+            <StackPanel Margin="15" Height="35" Orientation="Horizontal">
+                <TextBlock Padding="10" Width="150" FontSize="20" TextDecorations="Underline" 
+                           FontFamily="Modern No. 20"><Run Text="Email Address"/></TextBlock>
+
+                <TextBox x:Name="tbxEmail" BorderBrush="Black" BorderThickness="2" Width="300" FontSize="20" 
+                      Text="{Binding user.UserEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="20,0" Height="30"/>
+
+            </StackPanel>
+            <StackPanel Margin="15" Height="37" Orientation="Horizontal">
+                <TextBlock Padding="10" Width="150" FontSize="20" TextDecorations="Underline" 
+                           FontFamily="Modern No. 20"><Run Text="UserName"/></TextBlock>
+
+                <TextBox x:Name="tbxUserName" Width="200" FontSize="20" Text="{Binding user.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    BorderThickness="2" Margin="20,0" Height="30"/>
+
+            </StackPanel>
+
+            <StackPanel Margin="20,5,20,0" Height="35" Orientation="Horizontal">
+                <TextBlock Padding="10" Width="150" FontSize="20" TextDecorations="Underline" 
+                           FontFamily="Modern No. 20"><Run Text="Role"/></TextBlock>
+
+                <ComboBox x:Name="cbxUserRole" BorderBrush="Black" BorderThickness="2" Width="200" FontSize="20" Text="{Binding user.UserRole, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Margin="20,0" Height="30">
+                    <ComboBoxItem Content="CEO"/>
+                    <ComboBoxItem Content="MANAGER"/>
+                    <ComboBoxItem Content="LEAD"/>
+                    <ComboBoxItem Content="MEMBER"/>
+                </ComboBox>
+
+            </StackPanel>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10,10,10,0" Height="30" Background="Bisque">
+            <Button x:Name="AuditBtn" Width="50" Height="30" Foreground="Black" FontSize="20" 
+                    Background="Transparent" Click="AuditBtn_Click" Content="-" />
+            <TextBlock Margin="10,0,0,0" FontSize="20" FontWeight="Bold" ><Run Text="Audit Information"/></TextBlock>
+        </StackPanel>
+        <StackPanel x:Name="AuditStkpl" Visibility="Visible" Margin="10,0,10,10" Height="200" Background="#FFE6DEDE" >
+            <StackPanel Orientation="Horizontal" Margin="5,10,5,5" Height="30">
+                <TextBlock Margin="10,0" Width="150" FontSize="20"><Run Text="Assigned Project"/></TextBlock>
+                <Border BorderThickness="2" BorderBrush="Black" Margin="20,0">
+                    <ComboBox x:Name="cbxAssigneProjectName" Width="300" 
+                   Text="{Binding user.AssignedProjectName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                   ItemsSource="{Binding projectnames}" FontSize="20" 
+                     BorderThickness="2" Margin="0" Height="30"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Margin="5,10" Height="100">
+                <Button  Height="70" Width="88" HorizontalContentAlignment="Left" BorderBrush="Red" BorderThickness="1" Background="Transparent" Click="Button_Click" Margin="0,15">
+                    <Button.ToolTip>
+                        <TextBlock><Run Text="Upload a photo"/></TextBlock>
+                    </Button.ToolTip>
+                    <Image x:Name="imgPhoto"  Width="60" Height="50" 
+                       Source="{Binding user.PersonPhoto, Converter={StaticResource BmptoByteCvtr}, Mode=OneWayToSource}" Stretch="Fill"/>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+
+</UserControl>

@@ -1,0 +1,16 @@
+﻿<Window x:Class="IssuesTracker.services.Contener"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IssuesTracker.services"
+        mc:Ignorable="d"
+    Title="Contener" Height="760" Width="820" WindowStyle="None" AllowsTransparency="True" 
+        WindowStartupLocation="CenterOwner" Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <StackPanel Background="AliceBlue">
+        <Button Height="30" Width="50" Foreground="Red" Background="Transparent" HorizontalAlignment="Right" Margin="10,5" Click="Button_Click">X</Button>
+        <ContentControl x:Name="cont" Margin="10" Width="800" Height="700" Content="{Binding}">
+
+        </ContentControl>
+    </StackPanel>
+</Window>

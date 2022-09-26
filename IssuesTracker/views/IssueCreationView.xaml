@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="IssuesTracker.views.IssueCreationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IssuesTracker.views"
+             mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="800" Foreground="Black" FontSize="12" FontWeight="Bold">
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+    <UserControl.Background>
+        <ImageBrush ImageSource="/IssuesTracker;component/images/splashscreenimsge.jpg"/>
+    </UserControl.Background>
+    <StackPanel CanVerticallyScroll="True" Background="#FFE6DEDE" Height="670" Margin="10,0">
+
+        <StackPanel Height="35" Orientation="Horizontal" Margin="10">
+            <Button Margin="540,0,0,0" Width="100" Background="Transparent" Command="{Binding RegisterIssueCmd }">Create</Button>
+            <Button Margin="20,0" Width="100" Background="Transparent" Command="{Binding cancelCmd}">Cancel</Button>
+        </StackPanel>
+        <TextBlock   Margin="20,10,20,0">Issue Summary</TextBlock>
+
+        <Canvas x:Name="canvsumup" Height="40" Width="400" HorizontalAlignment="Left" Margin="20,0">
+            <TextBox x:Name="tbxIssueSumup" 
+                     Text="{Binding issue.IssueSumup,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True" 
+                     BorderThickness="1"
+                      Background="#FFD5E8EE"
+                     Height="40" Width="370"
+                     VerticalScrollBarVisibility="Visible"
+                     HorizontalScrollBarVisibility="Visible"
+                     Padding="20,10"></TextBox>
+            <Button x:Name="downbtn1" Height="20" Width="20"
+              Canvas.Bottom="5" Canvas.Right="5"
+                Style="{StaticResource butonstyle}" Click="Downbtn1_Click"  ></Button>
+            <Button x:Name="uptn1" Visibility="Collapsed"
+                    Height="20" Width="20"
+                    Canvas.Bottom="5" Canvas.Right="5"
+                    Style="{StaticResource butonstyle1}" Click="Uptn1_Click" ></Button>
+        </Canvas>
+        <TextBlock   Margin="20,10,20,0">Issue Description</TextBlock>
+        <Canvas x:Name="canvDescription" Height="50" Margin="20,0" Width="600" HorizontalAlignment="Left">
+            <TextBox x:Name="tbxIssueDescription"
+             Canvas.Top="0" Canvas.Left="0"
+              Width="570" 
+             BorderThickness="1"  Height="50"
+             VerticalScrollBarVisibility="Auto"
+             Background="#FFD5E8EE"
+             Text="{Binding issue.IssueDescription,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+             AcceptsReturn="True" TextWrapping="Wrap" ></TextBox>
+            <Button x:Name="downbtn" Height="20" Width="20"
+              Canvas.Bottom="5" Canvas.Right="5"
+                Style="{StaticResource butonstyle}" Click="Downbtn_Click"    ></Button>
+            <Button x:Name="uptn" Visibility="Collapsed"
+                    Height="20" Width="20"
+                    Canvas.Bottom="5" Canvas.Right="5"
+                    Style="{StaticResource butonstyle1}" Click="Uptn_Click"></Button>
+        </Canvas>
+        <StackPanel Orientation="Horizontal" Height="30" Margin="20,10,20,5">
+            <TextBlock Width="135" Padding="10,5">Related Project</TextBlock>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="70,0">
+                <ComboBox x:Name="cbxRelatedPreoject" Width="300" 
+             SelectedItem="{Binding issue.IssueRelatedProject,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+             ItemsSource="{Binding projectnames}" ></ComboBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="30" Margin="20,5">
+            <TextBlock Width="135"  Padding="10,5">Identified by</TextBlock>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="70,0" >
+                <ComboBox x:Name="cbxCreatedPerson" Width="300" ItemsSource="{Binding  usernames}"
+                SelectedItem="{Binding issue.IdentifiedPersonName,Mode=TwoWay,
+                 UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="30" Margin="20,5">
+            <TextBlock Width="135" Padding="10,5">Identified Date</TextBlock>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="70,0">
+                <DatePicker x:Name="dpkrIditifiedDate" Width="300"
+     Text="{Binding issue.IssueIdentifiedDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+            </Border>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="30" Margin="20,5">
+            <TextBlock Width="135" Padding="10,5">Assigned to</TextBlock>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="70,0">
+                <ComboBox x:Name="cbxAssignedPerson" Width="300"
+           SelectedItem="{Binding issue.AssignedPersonName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+             
+                ItemsSource="{Binding  usernames}"></ComboBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="30" Margin="20,5">
+            <TextBlock  Padding="10,5" Width="190">Target Resolution Date</TextBlock>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="20,0">
+                <DatePicker Width="300" 
+          Text="{Binding issue.ResolutionTargetDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+            </Border>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="30" Margin="20,0">
+            <TextBlock  Padding="10,5" Width="190">Actual Resolution Date</TextBlock>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="20,0">
+                <DatePicker  Width="300" 
+      Text="{Binding issue.ActualResolutionDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+            </Border>
+        </StackPanel>
+
+        <TextBlock VerticalAlignment="Center" Width="190" Margin="20,0,0,0" HorizontalAlignment="Left">Progress</TextBlock>
+        <Canvas x:Name="canvprogress" Width="400" Height="40" HorizontalAlignment="Left" Margin="20,0">
+            <TextBox x:Name="tbxprogress"  Width="370" Height="40" 
+                          VerticalScrollBarVisibility="Visible"
+                          HorizontalScrollBarVisibility="Visible"
+                          BorderThickness="1"
+                          Background="#FFD5E8EE"
+                         Text="{Binding issue.issueProgression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         AcceptsReturn="True" 
+                         TextWrapping="Wrap"/>
+            <Button x:Name="downbtn2" Height="20" Width="20"
+              Canvas.Bottom="5" Canvas.Right="5"
+                Style="{StaticResource butonstyle}" Click="Downbtn2_Click"  ></Button>
+            <Button x:Name="uptn2" Visibility="Collapsed"
+                    Height="20" Width="20"
+                    Canvas.Bottom="5" Canvas.Right="5"
+                    Style="{StaticResource butonstyle1}" Click="Uptn2_Click" ></Button>
+        </Canvas>
+        <TextBlock  HorizontalAlignment="Left" 
+                        Width="190"
+                        Margin="20,5,0,0">Resolution Sumary:</TextBlock>
+        <Canvas  x:Name="canvresolt" Margin="20,0" Width="400" Height="40" HorizontalAlignment="Left">
+            <TextBox x:Name="tbxresolt"
+                     Width="370"
+                     Height="40"
+                     BorderThickness="1"
+                     Background="#FFD5E8EE"
+                     VerticalScrollBarVisibility="Visible"
+                     AcceptsReturn="True" TextWrapping="Wrap"
+                     Text="{Binding issue.ResolutionSumup,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button x:Name="downbtn3" Height="20" Width="20"
+              Canvas.Bottom="5" Canvas.Right="5"
+                Style="{StaticResource butonstyle}" Click="Downbtn3_Click"   ></Button>
+            <Button x:Name="uptn3" Visibility="Collapsed"
+                    Height="20" Width="20"
+                    Canvas.Bottom="5" Canvas.Right="5"
+                    Style="{StaticResource butonstyle1}" Click="Uptn3_Click" ></Button>
+        </Canvas>
+    </StackPanel>
+</UserControl>

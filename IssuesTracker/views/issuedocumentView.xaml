@@ -1,0 +1,21 @@
+﻿<Window x:Class="IssuesTracker.views.issuedocumentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IssuesTracker.views"
+        mc:Ignorable="d"
+        Title="issuedocumentView" Height="726.341" Width="800" WindowStyle="None"
+        AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded">
+    
+    <StackPanel  >
+        <Button HorizontalAlignment="Right" Background="Transparent" Margin="10" Click="Button_Click" MouseLeftButtonDown="Button_MouseLeftButtonDown">X</Button>
+        <StackPanel Height="577" Width="780" Margin="10">
+            <ContentControl x:Name="docarea" Width="780" Height="578"></ContentControl>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="42">
+            <Button x:Name="btnPrint" Background="Transparent" Margin="30,0,0,0" Width="100" Click="BtnPrint_Click" RenderTransformOrigin="1.159,0.332">Print</Button>
+        </StackPanel>
+        
+    </StackPanel>
+</Window>

@@ -1,0 +1,65 @@
+﻿<Window x:Class="IssuesTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IssuesTracker"
+        mc:Ignorable="d"
+      Title="MainWindow" Height="650"  Width="1100" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True"
+    Background="{x:Null}" WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" >
+    <StackPanel Orientation="Vertical" >
+        <StackPanel.Background>
+            <ImageBrush ImageSource="images/istockphoto-1226478926-170667a.jpg"/>
+        </StackPanel.Background>
+        <StackPanel Height="60" Margin="10" Orientation="Horizontal">
+            <TextBlock Width="532" Height="40" Margin="240,12,0,8" Padding="100,10"
+                 FontSize="24" FontWeight="Bold" Foreground="#FF590766" FontFamily="Snap ITC" RenderTransformOrigin="0.5,0.5" >
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.444"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform><Run Text="ISSUE TRACKING SYSTEM"/></TextBlock>
+            <Button Margin="250,14" Background="Transparent" x:Name="mainWinCloseBtn" Foreground="Red"
+               Click="MainWinCloseBtn_Click" Content="X"  Width="45"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="580" >
+            <StackPanel Width="120" Margin="0,0,0,21">
+                <TextBlock Margin="10,100,10,5" Padding="15,2" Height="20"
+                           TextDecorations="Underline" Foreground="#FF141EE6"
+                           FontSize="14" FontWeight="Bold">PROJECTS</TextBlock>
+                <Button x:Name="ProjectBtn" 
+                        Height="40"
+                        Margin="10,0,10,10"
+                        Click="ProjectBtn_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/images (7).jpg"/>
+                    </Button.Background>
+                </Button>
+                <TextBlock Margin="10,10,10,5" Padding="20,2" Height="20" TextDecorations="Underline" Foreground="#FF141EE6" FontSize="14" FontWeight="Bold">ISSUES</TextBlock>
+                <Button x:Name="btnIssues" Height="40" Margin="10,0,10,10" Click="BtnIssues_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/images (7).jpg"/>
+                    </Button.Background>
+                </Button>
+                <TextBlock Margin="10,10,10,5" Padding="20,2" Height="20" TextDecorations="Underline" Foreground="#FF141EE6" FontSize="14" FontWeight="Bold">USERS</TextBlock>
+                <Button x:Name="btnUsers" Height="40" Margin="10,0,10,10" Click="BtnUsers_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/images (7).jpg"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+            <Canvas>
+
+                <ContentControl  x:Name="mainArea" Width="937" Margin="0,0,0,43" >
+                    <ContentControl.Background>
+                        <ImageBrush ImageSource="images/blue-room-3d-background-260nw-1024333018.jpg"/>
+                    </ContentControl.Background>
+                </ContentControl>
+            </Canvas>
+        </StackPanel>
+    </StackPanel>
+</Window>

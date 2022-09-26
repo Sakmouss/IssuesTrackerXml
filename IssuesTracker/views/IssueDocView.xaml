@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="IssuesTracker.views.IssueDocView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IssuesTracker.views"
+             mc:Ignorable="d" 
+        d:DesignHeight="700" d:DesignWidth="800" Foreground="Black" Background="White">
+    <StackPanel>
+        <TextBlock Height="30"></TextBlock>
+        <FlowDocumentReader BorderThickness="1" BorderBrush="Red" Height="600" Margin="10,20" Background="White">
+            <FlowDocument>
+                <Table>
+                    <TableRowGroup>
+                        <TableRow >
+                            <TableCell >
+                                <Paragraph>Identified Date:</Paragraph>
+                            </TableCell>
+                            <TableCell >
+                                <Paragraph >
+                                    <TextBlock Text="{Binding issue.IssueIdentifiedDate}"></TextBlock>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+
+                        <TableRow>
+                            <TableCell >
+                                <Paragraph>Identified by:</Paragraph>
+                            </TableCell>
+                            <TableCell >
+                                <Paragraph>
+                                    <TextBlock Text="{Binding issue.IdentifiedPersonName}"></TextBlock>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell >
+                                <Paragraph>Status:</Paragraph>
+                            </TableCell>
+                            <TableCell >
+                                <Paragraph>
+                                    <TextBlock Text="{Binding issue.IssueStatus}"></TextBlock>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+
+                        <TableRow>
+                            <TableCell >
+                                <Paragraph>Priority:</Paragraph>
+                            </TableCell>
+                            <TableCell >
+                                <Paragraph>
+                                    <TextBlock Text="{Binding issue.IssuePriority}"></TextBlock>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell >
+                                <Paragraph>Target Resolution Date:</Paragraph>
+                            </TableCell>
+                            <TableCell >
+                                <Paragraph >
+                                    <TextBlock Text="{Binding issue.ResolutionTargetDate}"></TextBlock>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell >
+                                <Paragraph>Actual Resolution Date:</Paragraph>
+                            </TableCell>
+                            <TableCell >
+                                <Paragraph>
+                                    <TextBlock Text="{Binding issue.IssueIdentifiedDate}"></TextBlock>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell >
+                                <Paragraph>Related Project:</Paragraph>
+                            </TableCell>
+                            <TableCell >
+                                <Paragraph>
+                                    <TextBlock Text="{Binding issue.IssueIdentifiedDate}"></TextBlock>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+
+                        <TableRow>
+                            <TableCell >
+                                <Paragraph>Assigned to:</Paragraph>
+                            </TableCell>
+                            <TableCell >
+                                <Paragraph>
+                                    <TextBlock Text="{Binding issue.AssignedPersonName}"></TextBlock>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+
+                </Table>
+                <Paragraph>Issue Sammury</Paragraph>
+                <Paragraph>
+                    <TextBlock Text="{Binding issue.IssueSumup}"/>
+                </Paragraph>
+                <Paragraph>Issue Description</Paragraph>
+                <Paragraph>
+                    <TextBlock Text="{Binding issue.IssueDescription}"></TextBlock>
+                </Paragraph>
+                <Paragraph>Progress</Paragraph>
+                <Paragraph>
+                    <TextBlock Text="{Binding issue.IssueProgression}"></TextBlock>
+                </Paragraph>
+                <Paragraph>Resolution Sammury</Paragraph>
+                <Paragraph>
+                    <TextBlock Text="{Binding issue.ResolutionSumup}"></TextBlock>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentReader>
+    </StackPanel>
+
+</UserControl>

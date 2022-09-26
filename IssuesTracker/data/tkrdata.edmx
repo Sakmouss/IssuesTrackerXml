@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TrackerDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="TrackerDBModelStoreContainer">
+    <EntitySet Name="DBissues" EntityType="TrackerDBModel.Store.DBissues" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DBprojects" EntityType="TrackerDBModel.Store.DBprojects" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DBusers" EntityType="TrackerDBModel.Store.DBusers" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_DBprojectDBissue" Association="TrackerDBModel.Store.FK_DBprojectDBissue">
+      <End Role="DBprojects" EntitySet="DBprojects" />
+      <End Role="DBissues" EntitySet="DBissues" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DBissues">
+    <Key>
+      <PropertyRef Name="issueId" />
+    </Key>
+    <Property Name="issueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="issueSumup" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="issueDescription" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="identifiedDate" Type="datetime" Nullable="true" />
+    <Property Name="relatedProjectId" Type="int" Nullable="false" />
+    <Property Name="assignedPerson" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="resolutionTargetDate" Type="datetime" Nullable="true" />
+    <Property Name="issueProgression" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="actualResolutionDate" Type="datetime" Nullable="true" />
+    <Property Name="resolutionSumup" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DBprojects">
+    <Key>
+      <PropertyRef Name="IdprojectId" />
+    </Key>
+    <Property Name="IdprojectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="projectName" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="startDate" Type="datetime" Nullable="true" />
+    <Property Name="targetEndDate" Type="datetime" Nullable="true" />
+    <Property Name="actualEndDate" Type="datetime" Nullable="true" />
+    <Property Name="createdDate" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DBusers">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="personName" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="personEmail" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="personRole" Type="nvarchar" Nullable="true" MaxLength="20" />
+    <Property Name="userName" Type="nvarchar" Nullable="true" MaxLength="30" />
+    <Property Name="assignedProject" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="registeredDate" Type="datetime" Nullable="true" />
+    <Property Name="personPhoto" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_DBprojectDBissue">
+    <End Role="DBprojects" Type="TrackerDBModel.Store.DBprojects" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DBissues" Type="TrackerDBModel.Store.DBissues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DBprojects">
+        <PropertyRef Name="IdprojectId" />
+      </Principal>
+      <Dependent Role="DBissues">
+        <PropertyRef Name="relatedProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TrackerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DBissue">
+          <Key>
+            <PropertyRef Name="issueId" />
+          </Key>
+          <Property Name="issueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="issueSumup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="issueDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="identifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="relatedProjectId" Type="Int32" Nullable="false" />
+          <Property Name="assignedPerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="resolutionTargetDate" Type="DateTime" Precision="3" />
+          <Property Name="issueProgression" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="actualResolutionDate" Type="DateTime" Precision="3" />
+          <Property Name="resolutionSumup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DBproject" Relationship="Self.FK_DBprojectDBissue" FromRole="DBissues" ToRole="DBprojects" />
+        </EntityType>
+        <EntityType Name="DBproject">
+          <Key>
+            <PropertyRef Name="IdprojectId" />
+          </Key>
+          <Property Name="IdprojectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="projectName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Precision="3" />
+          <Property Name="targetEndDate" Type="DateTime" Precision="3" />
+          <Property Name="actualEndDate" Type="DateTime" Precision="3" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DBissues" Relationship="Self.FK_DBprojectDBissue" FromRole="DBprojects" ToRole="DBissues" />
+        </EntityType>
+        <EntityType Name="DBuser">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="personEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="personRole" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="userName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="assignedProject" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="registeredDate" Type="DateTime" Precision="3" />
+          <Property Name="personPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_DBprojectDBissue">
+          <End Role="DBprojects" Type="Self.DBproject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DBissues" Type="Self.DBissue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DBprojects">
+              <PropertyRef Name="IdprojectId" />
+            </Principal>
+            <Dependent Role="DBissues">
+              <PropertyRef Name="relatedProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TrackerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DBissues" EntityType="Self.DBissue" />
+          <EntitySet Name="DBprojects" EntityType="Self.DBproject" />
+          <EntitySet Name="DBusers" EntityType="Self.DBuser" />
+          <AssociationSet Name="FK_DBprojectDBissue" Association="Self.FK_DBprojectDBissue">
+            <End Role="DBprojects" EntitySet="DBprojects" />
+            <End Role="DBissues" EntitySet="DBissues" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TrackerDBModelStoreContainer" CdmEntityContainer="TrackerDBEntities">
+    <EntitySetMapping Name="DBissues">
+      <EntityTypeMapping TypeName="IsTypeOf(TrackerDBModel.DBissue)">
+        <MappingFragment StoreEntitySet="DBissues">
+          <ScalarProperty Name="issueId" ColumnName="issueId" />
+          <ScalarProperty Name="issueSumup" ColumnName="issueSumup" />
+          <ScalarProperty Name="issueDescription" ColumnName="issueDescription" />
+          <ScalarProperty Name="identifiedDate" ColumnName="identifiedDate" />
+          <ScalarProperty Name="relatedProjectId" ColumnName="relatedProjectId" />
+          <ScalarProperty Name="assignedPerson" ColumnName="assignedPerson" />
+          <ScalarProperty Name="resolutionTargetDate" ColumnName="resolutionTargetDate" />
+          <ScalarProperty Name="issueProgression" ColumnName="issueProgression" />
+          <ScalarProperty Name="actualResolutionDate" ColumnName="actualResolutionDate" />
+          <ScalarProperty Name="resolutionSumup" ColumnName="resolutionSumup" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DBprojects">
+      <EntityTypeMapping TypeName="IsTypeOf(TrackerDBModel.DBproject)">
+        <MappingFragment StoreEntitySet="DBprojects">
+          <ScalarProperty Name="IdprojectId" ColumnName="IdprojectId" />
+          <ScalarProperty Name="projectName" ColumnName="projectName" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="targetEndDate" ColumnName="targetEndDate" />
+          <ScalarProperty Name="actualEndDate" ColumnName="actualEndDate" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DBusers">
+      <EntityTypeMapping TypeName="IsTypeOf(TrackerDBModel.DBuser)">
+        <MappingFragment StoreEntitySet="DBusers">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="personName" ColumnName="personName" />
+          <ScalarProperty Name="personEmail" ColumnName="personEmail" />
+          <ScalarProperty Name="personRole" ColumnName="personRole" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="assignedProject" ColumnName="assignedProject" />
+          <ScalarProperty Name="registeredDate" ColumnName="registeredDate" />
+          <ScalarProperty Name="personPhoto" ColumnName="personPhoto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

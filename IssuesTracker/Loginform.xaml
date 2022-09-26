@@ -1,0 +1,35 @@
+﻿<Window x:Class="IssuesTracker.Loginform"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IssuesTracker"
+        mc:Ignorable="d"
+    Title="Loginform" Height="650"  Width="1100"
+        WindowStyle="None"
+        FontSize="16" FontWeight="Bold"
+        AllowsTransparency="True"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen" 
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <StackPanel Orientation="Horizontal">
+        <StackPanel.Background>
+            <ImageBrush ImageSource="images/istockphoto-1226478926-170667a.jpg"/>
+        </StackPanel.Background>
+        <Border BorderBrush="Blue"  Margin="350,0" BorderThickness="5" Width="400" Height="500" CornerRadius="15">
+            <StackPanel x:Name="loginstackpanel"
+                    Orientation="Vertical">
+                <TextBlock Height="40" Margin="20"
+                  Padding="60,5" FontSize="20">Enter your credemtials</TextBlock>
+                <TextBox x:Name="tbxusername" Margin="30" Height="40" >Username</TextBox>
+                <TextBox x:Name="tbxEmail" Margin="30" Height="40" Text="Email" />
+                <TextBox x:Name="tbxPersonName" Visibility="Collapsed" Margin="30" Height="40"  Text="Name"></TextBox>
+                <StackPanel Height="40" Orientation="Horizontal" Margin="5,50">
+                    <Button x:Name="btxLogin" Margin="120,0" Width="150" Height="40" Click="BtxLogin_Click">Login</Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
+</Window>

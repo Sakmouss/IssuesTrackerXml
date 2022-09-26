@@ -1,0 +1,21 @@
+﻿<Window x:Class="IssuesTracker.Splashscreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IssuesTracker"
+        mc:Ignorable="d"
+     Title="SplashScreen" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        BorderBrush="Blue"
+        BorderThickness="2" ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush ImageSource="images/splashscreenimsge.jpg"/>
+    </Window.Background>
+    <StackPanel>
+        <TextBlock  Margin="100,200" Text="Issue Tracker Loading......" FontSize="30" FontFamily="Showcard Gothic" Foreground="#FFA48ADA"></TextBlock>
+    </StackPanel>
+
+</Window>

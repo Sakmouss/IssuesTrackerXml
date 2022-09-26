@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="IssuesTracker.views.ModifyProjectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IssuesTracker.views"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="800" FontSize="20" FontFamily="Modern No. 20" Background="AliceBlue">
+    <StackPanel>
+        <StackPanel.Background>
+            <ImageBrush ImageSource="/IssuesTracker;component/images/images.jpg"/>
+        </StackPanel.Background>
+        <TextBlock Height="40" Margin="50,10" FontSize="28"
+                   FontWeight="Bold" Padding="160,0">PROJECT INFORMATION</TextBlock>
+        <StackPanel Height="35" Orientation="Horizontal" Margin="10,0" Background="Bisque">
+            <Button  Width="50" x:Name="btninfo" Height="30" Foreground="Black"
+                    FontSize="20" Background="Transparent" Click="Btninfo_Click"   >-</Button>
+            <TextBlock  Height="35" FontSize="20" FontWeight="Bold" Margin="10,0" Padding="5"
+                    Width="728">Project details</TextBlock>
+        </StackPanel>
+        <StackPanel x:Name="panelInfo" Height="350" Margin="10,0" Background="#FFE6DEDE">
+            <StackPanel Orientation="Horizontal" Margin="10,10,10,10" Height="35">
+                <Button x:Name="btnDelete" Margin="450,0,0,0" Width="150" Background="Transparent" Content="Delete" Command="{Binding DeleteProjectCmd}" />
+                <Button x:Name="btnRegister" Margin="10,0,5,0" Width="150" Background="Transparent" Content="Apply changes" Command="{Binding UpdateProjectCmd}"/>
+            </StackPanel>
+            <StackPanel Margin="20,30,20,0"  Height="35" Orientation="Horizontal">
+                <TextBlock Padding="10" Width="150" FontSize="20" TextDecorations="Underline"
+                           FontFamily="Modern No. 20">Project Name</TextBlock>
+                <TextBox x:Name="tbxProjectName" Foreground="Red" IsEnabled="False" Margin="20,0" Text="{Binding project.ProjectName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         BorderThickness="2" Width="500"  ></TextBox>
+            </StackPanel>
+            <StackPanel Margin="15" Height="35" Orientation="Horizontal">
+                <TextBlock Padding="10" Width="150" FontSize="20" TextDecorations="Underline" 
+                           FontFamily="Modern No. 20">Start Date</TextBlock>
+                <Border BorderThickness="2" BorderBrush="Black" Margin="25,0">
+                    <DatePicker x:Name="dpkrStartDate"  Width="200"   BorderThickness="2" 
+                      Text="{Binding project.StartDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0" Height="30"></DatePicker>
+                </Border>
+            </StackPanel>
+            <StackPanel Margin="15" Height="37" Orientation="Horizontal">
+                <TextBlock Padding="10" Width="150" FontSize="20" TextDecorations="Underline" 
+                           FontFamily="Modern No. 20">Target end Date</TextBlock>
+                <Border BorderThickness="2" BorderBrush="Black" Margin="25,0">
+                    <DatePicker x:Name="dpkrTargetDate" Width="200"  Text="{Binding project.TargetEndDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                    BorderThickness="2" Margin="0" Height="30"></DatePicker>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Margin="20,5,20,0" Height="35" Orientation="Horizontal">
+                <TextBlock Padding="10" Width="150" FontSize="20" TextDecorations="Underline" 
+                           FontFamily="Modern No. 20">Actual end Date</TextBlock>
+                <Border BorderThickness="2" BorderBrush="Black" Margin="25,0">
+                    <DatePicker x:Name="dpkrActualDate" Width="200"  Text="{Binding project.ActualEndDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     BorderThickness="2" Margin="0" Height="30"></DatePicker>
+                </Border>
+            </StackPanel>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10,10,10,0" Height="30" Background="Bisque">
+            <Button x:Name="AuditBtn" Width="50" Height="30" Foreground="Black"
+                    FontSize="20" Background="Transparent" Click="AuditBtn_Click"  >-</Button>
+            <TextBlock Margin="10,0,0,0" FontSize="20" FontWeight="Bold" Padding="5">Audit Information</TextBlock>
+        </StackPanel>
+        <StackPanel x:Name="AuditStkpl" Visibility="Visible" Margin="10,0,10,10" Height="200" Background="#FFE6DEDE">
+            <StackPanel Orientation="Horizontal" Margin="5,20,5,5" Height="30">
+                <TextBlock Margin="10,0" Width="150" FontSize="20">Date of creating</TextBlock>
+                <Border BorderThickness="2" BorderBrush="Black" Margin="20,0">
+                    <DatePicker x:Name="dpkrCreationDate" Width="200" FontSize="20" Text="{Binding project.CreatedDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     BorderThickness="2" Margin="0" Height="30"></DatePicker>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
